@@ -1,13 +1,11 @@
 name: Data Extraction Pipeline (PoC)
 
 on:
-  workflow_dispatch: # Memungkinkan kamu menjalankan pipeline ini secara manual lewat tombol di GitHub (sangat berguna untuk testing awal)
-  # schedule:
-  #   - cron: '0 1 * * *' # Bagian ini di-comment dulu. Nanti diaktifkan agar jalan otomatis jam 1 pagi.
+  workflow_dispatch:
 
 jobs:
   extract-and-load:
-    runs-on: self-hosted # Pastikan label ini sesuai dengan runner di Synology-mu
+    runs-on: self-hosted
 
     steps:
       - name: Checkout Code
@@ -17,11 +15,9 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: "3.10"
-          # GitHub Actions akan otomatis menyiapkan Python di dalam runner Synology saat tugas berjalan
 
       - name: Install Dependencies
         run: pip install requests pandas psycopg2-binary
-        # Library standar untuk tembak API (requests), olah data (pandas), dan koneksi ke PostgreSQL (psycopg2)
 
       - name: Jalankan Skrip Uji Coba
-        run: python scripts/dummy_pull.py
+        run: python scripts/dummy-pull.py
