@@ -1,7 +1,10 @@
 name: Data Extraction Pipeline (PoC)
 
 on:
-  workflow_dispatch:
+  workflow_dispatch: # Tetap ada untuk menjalankan manual
+  push:
+    branches:
+      - master
 
 jobs:
   extract-and-load:
