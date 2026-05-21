@@ -23,16 +23,16 @@ for i in range(14):
 print(f"✅ Berhasil membuat {len(dummy_data)} baris data dummy.")
 
 # ==========================================
-# 2. KONEKSI KE DATA WAREHOUSE (SYNOLOGY)
+# 2. KONEKSI MENGGUNAKAN ENVIRONMENT VARIABLES
 # ==========================================
-DB_HOST = "192.168.2.150" # PERHATIAN: Ganti dengan IP lokal Synology kamu
-DB_PORT = "5555"        # Menggunakan port yang sudah kita konfigurasi
-DB_NAME = "executive_dashboard"
-DB_USER = "admin"
-DB_PASS = "administrator"
+DB_HOST = os.environ.get('DB_HOST')
+DB_PORT = "5555" 
+DB_NAME = os.environ.get('DB_NAME')
+DB_USER = os.environ.get('DB_USER')
+DB_PASS = os.environ.get('DB_PASS')
 
 try:
-    print("🔄 Menghubungkan ke PostgreSQL...")
+    print(f"🔄 Menghubungkan ke PostgreSQL di {DB_HOST}...")
     conn = psycopg2.connect(
         host=DB_HOST, port=DB_PORT, dbname=DB_NAME, user=DB_USER, password=DB_PASS
     )
