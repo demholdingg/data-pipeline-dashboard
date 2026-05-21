@@ -1,3 +1,4 @@
+import os
 import psycopg2
 import random
 from datetime import datetime, timedelta
